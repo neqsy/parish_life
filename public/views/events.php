@@ -42,36 +42,18 @@
                 </div>
             </header>
             <section class="events">
+                <?php foreach ($events as $event):?>
                 <div id = "event-1">
-                    <img src="public/img/uploads/nogi.jpg">
+                    <img src="public/uploads/<?= $event->getImage() ?>">
                     <div>
-                        <h2>Title</h2>
-                        <p>description</p>
+                        <h2><?= $event->getTitle();?></h2>
+                        <p><?= $event->getDescription();?></p>
                         <div>
                             <i class="author">John Snow</i>
                         </div>
                     </div>
                 </div>
-                <div id = "event-1">
-                    <img src="public/img/uploads/nogi.jpg">
-                    <div>
-                        <h2>Title</h2>
-                        <p>description</p>
-                        <div>
-                            <i class="author">John Snow</i>
-                        </div>
-                    </div>
-                </div>
-                <div id = "event-1">
-                    <img src="public/img/uploads/nogi.jpg">
-                    <div>
-                        <h2>Title</h2>
-                        <p>description</p>
-                        <div>
-                            <i class="author">John Snow</i>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </section>
         </main>
     </div>
