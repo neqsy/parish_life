@@ -1,20 +1,11 @@
-<?php
-session_start();
-if(!isset($_SESSION['zalogowany']))
-{
-    $url = "http://$_SERVER[HTTP_HOST]";
-    header("Location: {$url}/login");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
-    <link rel="stylesheet" type="text/css" href="public/css/events.css">
+    <link rel="stylesheet" type="text/css" href="public/css/order.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/029cd684fc.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./public/js/search.js" defer></script>
-    <title>EVENTS</title>
+    <title>ORDER</title>
 </head>
 <body>
     <div class="base-container">
@@ -63,32 +54,25 @@ if(!isset($_SESSION['zalogowany']))
             </header>
 
             <section class="events">
-                <?php foreach ($events as $event):?>
-                    <div id = "event-1">
-                        <img src="public/uploads/<?= $event->getImage() ?>">
-                        <div>
-                            <h2><?= $event->getTitle();?></h2>
-                            <p><?= $event->getDescription();?></p>
-                            <div>
-                                <i class="author">John Snow</i>
-                            </div>
-                        </div>
+                <form class="order" action="addOrder" method="POST" ENCTYPE="multipart/form-data">
+                    <div class ="message">
+                        <?php if (isset($messages)) {
+                            foreach ($messages as $message){
+                                echo $message;
+                            }
+                        }
+                        ?>
                     </div>
-                <?php endforeach; ?>
-
+                    <input name="name" type="text" placeholder="name">
+                    <input name="surname" type="text" placeholder="surname">
+                    <input name="intention" type="text" placeholder="intention">
+                    <input name="phone" type="text" placeholder="phone">
+                    <input name="date" type="text" placeholder="date: dd/mm/yyyy">
+                    <button type="submit">SEND</button>
+                </form>
             </section>
         </main>
     </div>
 </body>
-<template id="event-template">
-    <div id = "event-1">
-        <img src="">
-        <div>
-            <h2>title</h2>
-            <p>description</p>
-            <div>
-                <i class="author">John Snow</i>
-            </div>
-        </div>
-    </div>
-</template>
+
+

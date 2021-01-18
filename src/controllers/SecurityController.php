@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/User.php';
 require_once __DIR__.'/../repository/UserRepository.php';
@@ -20,23 +20,23 @@ class SecurityController extends AppController {
             return $this->render('login');
         }
 
-        $email = $_POST['email'];
-        $password = md5($_POST['password']);
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['password'] = md5($_POST['password']);
 
-        $user = $this->userRepository->getUser($email);
+        $_SESSION['user'] = $this->userRepository->getUser($_SESSION['email']);
 
-        if (!$user) {
+        if (!$_SESSION['user']) {
             return $this->render('login', ['messages' => ['User not found!']]);
         }
 
-        if ($user->getEmail() !== $email) {
+        if ($_SESSION['user']->getEmail() !== $_SESSION['email']) {
             return $this->render('login', ['messages' => ['User with this email not exist!']]);
         }
 
-        if ($user->getPassword() !== $password) {
+        if ($_SESSION['user']->getPassword() !== $_SESSION['password']) {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
-
+        $_SESSION['zalogowany'] = true;
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/events");
     }
@@ -54,16 +54,27 @@ class SecurityController extends AppController {
         $surname = $_POST['surname'];
         $phone = $_POST['phone'];
 
-        if ($password !== $confirmedPassword) {
+        if($password !== $confirmedPassword) {
             return $this->render('register', ['messages' => ['Please provide proper password']]);
         }
 
-        //TODO try to use better hash function
+        //$_SESSION['zalogowany'] = false;
         $user = new User($email, md5($password), $name, $surname);
         $user->setPhone($phone);
 
         $this->userRepository->addUser($user);
 
-        return $this->render('login', ['messages' => ['You\'ve been succesfully registrated!']]);
+        return $this->render('login', ['messages' => ['You\'ve been succesfully registered!']]);
+    }
+    public function logout(){
+        session_start();
+        session_unset();
+
+        if (!$this->isPost()) {
+            return $this->render('logout');
+        }
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/login");
+
     }
 }

@@ -1,0 +1,10 @@
+section.event-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-form>form {
+    display: flex;
+    flex-direction: column;
+}

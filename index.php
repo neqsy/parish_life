@@ -10,5 +10,9 @@ Routing::get('events', 'EventController');
 Routing::post('login', 'SecurityController');
 Routing::post('addEvent', 'EventController');
 Routing::post('register', 'SecurityController');
+Routing::post('search', 'EventController');
+Routing::post('logout', 'SecurityController');
+Routing::post('addOrder', 'OrderController');
+
 
 Routing::run($path);

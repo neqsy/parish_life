@@ -33,8 +33,7 @@ confirmedPasswordInput.addEventListener('keyup', function () {
     }, 1000);
 });
 
-// form.addEventListener("submit", e => {
-//     e.preventDefault();
-//
-//     //TODO check again if form is valid after submitting it
-// });
+form.addEventListener("submit", e => {
+    e.preventDefault();
+    //TODO check again if form is valid after submitting it
+ });

@@ -14,20 +14,21 @@
         <img src="public/img/logo.svg">
         <ul>
             <li>
-                <i class="fas fa-project-diagram"></i>
-                <a href="#" class="button">events</a>
+                <i class="fas fa-calendar-week"></i>
+                <a href="events" class="button">events</a>
             </li>
             <li>
-                <i class="fas fa-project-diagram"></i>
-                <a href="#" class="button">events</a>
+                <i class="fas fa-users"></i>
+                <a href="#" class="button">people</a>
             </li>
             <li>
-                <i class="fas fa-project-diagram"></i>
-                <a href="#" class="button">events</a>
+                <i class="fas fa-comment-alt"></i>
+                <a href="#" class="button">messages</a>
             </li>
             <li>
-                <i class="fas fa-project-diagram"></i>
-                <a href="#" class="button">events</a>
+                <i class="fas fa-bell"></i>
+                <a href="#" class="button">notifications</a>
+            </li>
             </li>
         </ul>
     </nav>
@@ -38,9 +39,7 @@
                     <input placeholder="search event">
                 </form>
             </div>
-            <div class="add-event">
-                <i class="fas fa-plus"></i> add event
-            </div>
+
         </header>
         <section class="event-form">
             <h1>UPLOAD</h1>

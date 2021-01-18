@@ -1,3 +1,12 @@
+<?php
+session_start();
+if((isset($_SESSION['zalogowany'])) && ($_SESSION['zalogowany'] == true))
+{
+    $url = "http://$_SERVER[HTTP_HOST]";
+    header("Location: {$url}/events");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/style.css">
@@ -22,6 +31,7 @@
                 <input name="email" type="text" placeholder="email@email.com">
                 <input name="password" type="password" placeholder="password">
                 <button type="submit">LOGIN</button>
+                <a href="register">REGISTER</a>
             </form>
         </div>
     </div>
